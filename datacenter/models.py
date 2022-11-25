@@ -33,19 +33,18 @@ class Visit(models.Model):
 
 
 def get_duration(visit):
-    entered_time = timezone.localtime(visit.entered_at)
-    leaved_at = timezone.localtime(visit.leaved_at)
     if not visit.leaved_at:
-        todey_time = timezone.localtime()
-        duration = todey_time - entered_time
-        return duration
-    duration = leaved_at - entered_time
-    return duration
+        return timezone.localtime() - timezone.localtime(visit.entered_at)
+    return(
+            timezone.localtime(visit.leaved_at) -
+            timezone.localtime(visit.entered_at)
+    )
 
 
 def format_duration(duration):
-    time = str(duration)[0:7]
-    return time
+    hours = int(duration.total_seconds() // 3600)
+    minutes = int((duration.total_seconds() % 3600) // 60)
+    return f"{hours}ч {minutes}мин"
 
 
 def is_visit_long(visit, minutes=60):
