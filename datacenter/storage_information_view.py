@@ -6,25 +6,25 @@ from datacenter.models import get_duration, format_duration, is_visit_long
 
 def storage_information_view(request):
     non_closed_visits = []
-    serialized = Visit.objects.filter(leaved_at=None)
-    for visit in serialized:
+    visits = Visit.objects.filter(leaved_at=None)
+    for visit in visits:
         visit_long = is_visit_long(visit)
         duration = get_duration(visit)
-        time = format_duration(duration)
-        visit_ = (
+        formatted_duration = format_duration(duration)
+        formatted_entered_at = (
             timezone.localtime(visit.entered_at).strftime(
                 "%d %B %Y г. %H:%M:%S"
             )
         )
-        visited = {
+        serialized_visit = {
             'who_entered': visit.passcard,
-            'entered_at': visit_,
-            'duration': time,
+            'entered_at': formatted_entered_at,
+            'duration': formatted_duration,
             'is_strange': visit_long
 
 
         }
-        non_closed_visits.append(visited)
+        non_closed_visits.append(serialized_visit)
     context = {
         'non_closed_visits': non_closed_visits,
     }
