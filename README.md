@@ -13,6 +13,7 @@
 - python3.10
 - django==3.2.*
 - psycopg2-binary==2.9.*
+- python-dotenv==0.21.*
 
 
 ### Запуск проекта
@@ -31,7 +32,23 @@ python3.10 -m pip install -r requirements.txt
 python3.10 -m pip list
 ```
 
+- Создаем файл .env в папке проекта, командой в терминале.Прописываем переменные со значениями 
+```
+touch .env
+
+DEBUG=True или False
+DB_ENGINE='Ваши данные'
+DB_HOST='Ваши данные'
+DB_PORT='Ваши данные'
+DB_NAME='Ваши данные'
+DB_USER='Ваши данные'
+DB_PASSWORD='Ваши данные'
+SECRET_KEY='Ваши данные'
+```
+
+
 ### Команда запуска файла, производится в папке проекта.
 ```
-python3.10 main.py 
+python3.10 manage.py runserver 0.0.0.0:8000
+ 
 ```
