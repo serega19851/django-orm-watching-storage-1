@@ -8,8 +8,9 @@ port = os.getenv("DB_PORT")
 name = os.getenv("DB_NAME")
 user = os.getenv("DB_USER")
 password = os.getenv("DB_PASSWORD")
-secret_key = os.getenv("SECRET_KEY")
-debug = os.getenv("DEBUG")
+secret_key = os.getenv("SECRET_KEY", 'REPLACE_ME')
+debug = os.getenv("DEBUG", False)
+allowed_hosts = os.getenv('ALLOWED_HOSTS', ['127.0.0.1', 'localhost'])
 
 DATABASES = {
     'default': {
@@ -30,7 +31,7 @@ DEBUG = debug
 
 ROOT_URLCONF = 'project.urls'
 
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = allowed_hosts
 
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
