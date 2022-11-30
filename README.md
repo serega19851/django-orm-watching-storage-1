@@ -36,7 +36,7 @@ python3.10 -m pip list
 ```
 touch .env
 
-DEBUG=True или False
+DEBUG='Ваши данные'
 DB_ENGINE='Ваши данные'
 DB_HOST='Ваши данные'
 DB_PORT='Ваши данные'
@@ -44,6 +44,7 @@ DB_NAME='Ваши данные'
 DB_USER='Ваши данные'
 DB_PASSWORD='Ваши данные'
 SECRET_KEY='Ваши данные'
+ALLOWED_HOSTS='Ваши данные'
 ```
 
 
